@@ -18,9 +18,9 @@
 ; CHECK-NEXT:  Data
 ; CHECK-SAME:  Latency=3
 ; CHECK-NEXT:  Data
-; CHECK-SAME:  Latency=0
+; CHECK-SAME:  Latency=3
 ; CHECK-NEXT:  Data
-; CHECK-SAME:  Latency=0
+; CHECK-SAME:  Latency=4
 define dso_local i32 @bar(i32 %a1, i32 %b1, i32 %c1) minsize optsize {
   %1 = load i32, ptr @a, align 4
   %2 = load i32, ptr @b, align 4

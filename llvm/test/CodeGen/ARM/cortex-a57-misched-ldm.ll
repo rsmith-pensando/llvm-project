@@ -11,7 +11,8 @@
 ; CHECK:       Data
 ; CHECK-SAME:  Latency=3
 ; CHECK-NEXT:  Data
-; CHECK-SAME:  Latency=0
+; COM: variadic op should have the same latency
+; CHECK-SAME:  Latency=3
 
 define i32 @foo(ptr %a) nounwind optsize {
 entry:

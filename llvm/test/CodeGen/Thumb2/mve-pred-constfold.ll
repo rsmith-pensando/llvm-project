@@ -43,10 +43,10 @@ define arm_aapcs_vfpcc void @const(<8 x i16> %acc0, <8 x i16> %acc1, ptr nocaptu
 ; CHECK-NEXT:    vpsttee
 ; CHECK-NEXT:    vaddvt.s16 r12, q1
 ; CHECK-NEXT:    vaddvt.s16 r2, q0
-; CHECK-NEXT:    vaddve.s16 r4, q1
 ; CHECK-NEXT:    vaddve.s16 r6, q0
-; CHECK-NEXT:    stm.w r0, {r2, r6, r12}
+; CHECK-NEXT:    vaddve.s16 r4, q1
 ; CHECK-NEXT:    str r4, [r0, #12]
+; CHECK-NEXT:    stm.w r0, {r2, r6, r12}
 ; CHECK-NEXT:    pop {r4, r6, r7, pc}
 entry:
   %0 = zext i16 %p0 to i32

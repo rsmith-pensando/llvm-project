@@ -223,6 +223,7 @@ unsigned TargetSchedModel::computeOperandLatency(
   // unit latency (defaultDefLatency may be too conservative).
 #ifndef NDEBUG
   if (SCDesc->isValid() && !DefMI->getOperand(DefOperIdx).isImplicit() &&
+      !DefMI->isVariadic() &&
       !DefMI->getDesc().operands()[DefOperIdx].isOptionalDef() &&
       SchedModel.isComplete()) {
     errs() << "DefIdx " << DefIdx << " exceeds machine model writes for "

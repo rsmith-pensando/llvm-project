@@ -162,8 +162,8 @@ define void @test_memcpy16(ptr nocapture %x, ptr nocapture readonly %y, i32 %n) 
 ; CHECK-NEXT:    ldm.w r1, {r2, r3, r12}
 ; CHECK-NEXT:    ldr r4, [r1, #12]
 ; CHECK-NEXT:    adds r1, #64
-; CHECK-NEXT:    stm.w r0, {r2, r3, r12}
 ; CHECK-NEXT:    str r4, [r0, #12]
+; CHECK-NEXT:    stm.w r0, {r2, r3, r12}
 ; CHECK-NEXT:    adds r0, #64
 ; CHECK-NEXT:    le lr, .LBB3_2
 ; CHECK-NEXT:  @ %bb.3: @ %for.cond.cleanup
@@ -238,8 +238,8 @@ define void @test_memmove16(ptr nocapture %x, ptr nocapture readonly %y, i32 %n)
 ; CHECK-NEXT:    ldm.w r1, {r2, r3, r12}
 ; CHECK-NEXT:    ldr r4, [r1, #12]
 ; CHECK-NEXT:    adds r1, #64
-; CHECK-NEXT:    stm.w r0, {r2, r3, r12}
 ; CHECK-NEXT:    str r4, [r0, #12]
+; CHECK-NEXT:    stm.w r0, {r2, r3, r12}
 ; CHECK-NEXT:    adds r0, #64
 ; CHECK-NEXT:    le lr, .LBB5_2
 ; CHECK-NEXT:  @ %bb.3: @ %for.cond.cleanup

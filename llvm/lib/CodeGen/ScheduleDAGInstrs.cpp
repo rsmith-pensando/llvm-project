@@ -242,8 +242,10 @@ void ScheduleDAGInstrs::addPhysRegDataDeps(SUnit *SU, unsigned OperIdx) {
   // Only use any non-zero latency for real defs/uses, in contrast to
   // "fake" operands added by regalloc.
   const MCInstrDesc *DefMIDesc = &SU->getInstr()->getDesc();
-  bool ImplicitPseudoDef = (OperIdx >= DefMIDesc->getNumOperands() &&
-                            !DefMIDesc->hasImplicitDefOfPhysReg(MO.getReg()));
+  bool ImplicitPseudoDef = OperIdx >= DefMIDesc->getNumOperands() &&
+                           !DefMIDesc->hasImplicitDefOfPhysReg(MO.getReg()) &&
+                           (!SU->getInstr()->isVariadic() || MO.isImplicit() ||
+                            SU->getInstr()->isPseudo());
   for (MCRegAliasIterator Alias(MO.getReg(), TRI, true);
        Alias.isValid(); ++Alias) {
     for (Reg2SUnitsMap::iterator I = Uses.find(*Alias); I != Uses.end(); ++I) {
@@ -268,8 +270,10 @@ void ScheduleDAGInstrs::addPhysRegDataDeps(SUnit *SU, unsigned OperIdx) {
       const MCInstrDesc *UseMIDesc =
           (RegUse ? &UseSU->getInstr()->getDesc() : nullptr);
       bool ImplicitPseudoUse =
-          (UseMIDesc && UseOp >= ((int)UseMIDesc->getNumOperands()) &&
-           !UseMIDesc->hasImplicitUseOfPhysReg(*Alias));
+          UseMIDesc && UseOp >= ((int)UseMIDesc->getNumOperands()) &&
+          !UseMIDesc->hasImplicitUseOfPhysReg(*Alias) &&
+          (!RegUse->isVariadic() || RegUse->isPseudo() ||
+           RegUse->getOperand(UseOp).isImplicit());
       if (!ImplicitPseudoDef && !ImplicitPseudoUse) {
         Dep.setLatency(SchedModel.computeOperandLatency(SU->getInstr(), OperIdx,
                                                         RegUse, UseOp));
