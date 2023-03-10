@@ -245,7 +245,7 @@ void ScheduleDAGInstrs::addPhysRegDataDeps(SUnit *SU, unsigned OperIdx) {
   bool ImplicitPseudoDef = OperIdx >= DefMIDesc->getNumOperands() &&
                            !DefMIDesc->hasImplicitDefOfPhysReg(MO.getReg()) &&
                            (!SU->getInstr()->isVariadic() || MO.isImplicit() ||
-                            SU->getInstr()->isPseudo());
+                            SU->getInstr()->isTransient());
   for (MCRegAliasIterator Alias(MO.getReg(), TRI, true);
        Alias.isValid(); ++Alias) {
     for (Reg2SUnitsMap::iterator I = Uses.find(*Alias); I != Uses.end(); ++I) {
@@ -272,7 +272,7 @@ void ScheduleDAGInstrs::addPhysRegDataDeps(SUnit *SU, unsigned OperIdx) {
       bool ImplicitPseudoUse =
           UseMIDesc && UseOp >= ((int)UseMIDesc->getNumOperands()) &&
           !UseMIDesc->hasImplicitUseOfPhysReg(*Alias) &&
-          (!RegUse->isVariadic() || RegUse->isPseudo() ||
+          (!RegUse->isVariadic() || RegUse->isTransient() ||
            RegUse->getOperand(UseOp).isImplicit());
       if (!ImplicitPseudoDef && !ImplicitPseudoUse) {
         Dep.setLatency(SchedModel.computeOperandLatency(SU->getInstr(), OperIdx,
