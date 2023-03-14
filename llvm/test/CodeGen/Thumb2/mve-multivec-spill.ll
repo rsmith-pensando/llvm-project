@@ -37,19 +37,19 @@ define arm_aapcs_vfpcc void @spill_multivector(ptr %p) {
 ; CHECK-NEXT:    bl external_function
 ; CHECK-NEXT:    vldmia sp, {d2, d3, d4, d5} @ 32-byte Reload
 ; CHECK-NEXT:    add.w lr, sp, #32
-; CHECK-NEXT:    vstrw.32 q2, [r4, #80]
 ; CHECK-NEXT:    vstrw.32 q5, [r4, #144]
 ; CHECK-NEXT:    vstrw.32 q4, [r4, #128]
 ; CHECK-NEXT:    vstrw.32 q7, [r4, #112]
+; CHECK-NEXT:    vstrw.32 q6, [r4, #96]
 ; CHECK-NEXT:    vstrw.32 q1, [r4, #64]
+; CHECK-NEXT:    vstrw.32 q2, [r4, #80]
 ; CHECK-NEXT:    vldmia lr, {d2, d3, d4, d5} @ 32-byte Reload
 ; CHECK-NEXT:    add.w lr, sp, #64
-; CHECK-NEXT:    vstrw.32 q2, [r4, #48]
-; CHECK-NEXT:    vstrw.32 q6, [r4, #96]
 ; CHECK-NEXT:    vstrw.32 q1, [r5]
+; CHECK-NEXT:    vstrw.32 q2, [r4, #48]
 ; CHECK-NEXT:    vldmia lr, {d2, d3, d4, d5} @ 32-byte Reload
-; CHECK-NEXT:    vstrw.32 q2, [r4, #16]
 ; CHECK-NEXT:    vstrw.32 q1, [r4]
+; CHECK-NEXT:    vstrw.32 q2, [r4, #16]
 ; CHECK-NEXT:    add sp, #96
 ; CHECK-NEXT:    vpop {d8, d9, d10, d11, d12, d13, d14, d15}
 ; CHECK-NEXT:    pop {r4, r5, r7, pc}

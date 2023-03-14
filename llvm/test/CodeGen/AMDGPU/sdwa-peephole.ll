@@ -2068,11 +2068,11 @@ define amdgpu_kernel void @sdwa_crash_inlineasm_def() #0 {
 ; GFX10-LABEL: sdwa_crash_inlineasm_def:
 ; GFX10:       ; %bb.0: ; %bb
 ; GFX10-NEXT:    s_mov_b32 s0, 0xffff
+; GFX10-NEXT:    s_mov_b32 vcc_lo, exec_lo
 ; GFX10-NEXT:    ;;#ASMSTART
 ; GFX10-NEXT:    v_and_b32_e32 v0, s0, v0
 ; GFX10-NEXT:    ;;#ASMEND
 ; GFX10-NEXT:    v_or_b32_e32 v0, 0x10000, v0
-; GFX10-NEXT:    s_mov_b32 vcc_lo, exec_lo
 ; GFX10-NEXT:  .LBB21_1: ; %bb1
 ; GFX10-NEXT:    ; =>This Inner Loop Header: Depth=1
 ; GFX10-NEXT:    global_store_dwordx2 v[0:1], v[0:1], off

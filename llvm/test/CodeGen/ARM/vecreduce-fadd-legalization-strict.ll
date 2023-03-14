@@ -207,10 +207,10 @@ define fp128 @test_v2f128(<2 x fp128> %a, fp128 %s) nounwind {
 ; CHECK-NEXT:    mov r2, r4
 ; CHECK-NEXT:    mov r3, r5
 ; CHECK-NEXT:    bl __addtf3
+; CHECK-NEXT:    ldr r12, [sp, #36]
 ; CHECK-NEXT:    ldr r4, [sp, #32]
 ; CHECK-NEXT:    ldr r5, [sp, #40]
 ; CHECK-NEXT:    ldr lr, [sp, #44]
-; CHECK-NEXT:    ldr r12, [sp, #36]
 ; CHECK-NEXT:    stm sp, {r4, r12}
 ; CHECK-NEXT:    str r5, [sp, #8]
 ; CHECK-NEXT:    str lr, [sp, #12]

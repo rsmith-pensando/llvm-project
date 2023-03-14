@@ -46,9 +46,9 @@ define void @test3(ptr %a, ptr %b) {
 ; ARM:       @ %bb.0: @ %entry
 ; ARM-NEXT:    ldm r1, {r2, r3, r12}
 ; ARM-NEXT:    ldr r1, [r1, #12]
-; ARM-NEXT:    stm r0, {r2, r3, r12}
 ; ARM-NEXT:    eor r1, r1, #-2147483648
 ; ARM-NEXT:    str r1, [r0, #12]
+; ARM-NEXT:    stm r0, {r2, r3, r12}
 ; ARM-NEXT:    mov pc, lr
 ; NOLIB-LABEL: test3:
 ; NOLIB:       eor

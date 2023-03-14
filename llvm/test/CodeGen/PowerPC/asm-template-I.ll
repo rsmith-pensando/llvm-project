@@ -5,9 +5,9 @@
 define dso_local signext i32 @main(i32 signext %argc, ptr %argv) {
 ; CHECK-LABEL: main:
 ; CHECK:       # %bb.0: # %entry
+; CHECK-NEXT:    addi 4, 1, -4
 ; CHECK-NEXT:    stw 3, -4(1)
 ; CHECK-NEXT:    li 3, 0
-; CHECK-NEXT:    addi 4, 1, -4
 ; CHECK-NEXT:    #APP
 ; CHECK-NEXT:    .ascii "-1@0(4)"
 ; CHECK-NEXT:    .byte 0
